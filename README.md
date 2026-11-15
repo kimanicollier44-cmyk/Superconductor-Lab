@@ -2,52 +2,64 @@
 
 # Superconductor-Lab ❄️⚡
 
-**Superconductor Physics & Materials Lab** — by Darion Kellar
+**Superconductor Physics & Materials Lab** — an educational superconductor physics and materials lab in ONE pure-Python file, by Darion Kellar. The deep-physics foundation that **LevitationX** (flux-pinning levitation) and **MagLevX** (EDS / EMS trains) stand on: zero resistance, the **critical surface** (Tc, Bc2, Jc), the **Meissner effect**, **Type I vs Type II** vortices, **flux pinning**, the **BCS gap**, and a **cryogenics cost model**. Simulation and learning only — no hardware, no magnet designs, no room-temperature claims; every real-world operation sits behind a permanent HOLD gate (14 total). 🔒
 
-## ❓ What is this?
+![CI](https://github.com/kimanicollier44-cmyk/Superconductor-Lab/actions/workflows/ci.yml/badge.svg)
+![Docker Publish](https://github.com/kimanicollier44-cmyk/Superconductor-Lab/actions/workflows/docker-publish.yml/badge.svg)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
-Superconductor-Lab is an **educational superconductor physics and materials lab** in ONE pure-Python file — the deep-physics foundation that **LevitationX** (flux-pinning levitation) and **MagLevX** (EDS / EMS trains) stand on. It builds the subject from the ground up with **real formulas**: zero resistance, the **critical surface** in temperature / field / current space (Tc, Bc2, Jc) that a material must stay *inside* to superconduct at all, the **Meissner effect** and London penetration depth, **Type I vs Type II** behaviour and the vortex state, **flux pinning**, the **BCS energy gap**, critical-current derating curves, and a **cryogenics cost model** that shows why 77 K liquid nitrogen and 4.2 K liquid helium are different economic worlds. 🌡️
+> ℹ️ The two workflow badges above are the **live** GitHub Actions badges for this repo — they light up as soon as the `ci.yml` and `docker-publish.yml` files from the paste pack are pasted into `.github/workflows/`.
 
-It is a simulation and learning tool only. It controls **no hardware**, designs **no magnet**, and claims **no room-temperature superconductor** — H2S carries its ~155 GPa pressure caveat everywhere it appears, and every real-world operation sits behind a permanent HOLD gate (14 total). 🔒
+## 🧰 Tech Stack Badges & Full Architecture Tech Stack
 
-## 🧰 Tech Stack Badges & Full Architecture
+### 💻 Core Programming Languages & Core Systems
 
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
-![Stdlib Only](https://img.shields.io/badge/Dependencies-Zero-2ea44f)
+![Stdlib Only](https://img.shields.io/badge/Standard_Library-Only-2ea44f)
+
+- 🐍 Python 3.12, pure standard library (`math`, `hashlib`, `json`, `sys`) — ONE file: `main.py`
+- ⚛️ Physics core: critical surface Bc2(T) = Bc2(0)·(1 − t²), Jc(T,B) derating, Meissner screening + London penetration depth λ(T) = λ0/√(1 − (T/Tc)⁴), Type I vs II vortex bands, flux-pinning force density Fp = Jc × B, BCS gap Δ = 1.764 kB·Tc
+- 🧠 TinyML kNN operating-point classifier (from scratch, stdlib) on critical-surface ratios + applications mapper (MRI / LN2 maglev bearing / fusion field / 20 K instrument)
+- 🧑‍⚖️ Advisory seats inside `main.py`: Gemini Carbon 4 DECIDER (names-only, tighten-only, sha256 trace), Muse advisor (can_override_hold = False), Google Flow plan-only (rendered = False, live = 0)
+
+### ⛓️ Web3 & Infrastructure
+
+Not used — this lab is an offline physics simulation. No blockchain, no Web3 libraries, no network calls of any kind.
+
+### ⚙️ Platform Support & Hardware Architecture
+
+![Linux](https://img.shields.io/badge/Linux-Any-FCC624?logo=linux&logoColor=black)
+![macOS](https://img.shields.io/badge/macOS-Any-000000?logo=apple&logoColor=white)
+![Windows](https://img.shields.io/badge/Windows-Any-0078D6?logo=windows&logoColor=white)
+![Architecture](https://img.shields.io/badge/Architecture-Any%20CPU-6c757d)
+
+- 🖥️ Runs anywhere Python 3.12 runs — Linux, macOS, Windows, any CPU architecture
+- 🚫 Controls **no hardware**: no magnets, coils, cryostats, or instruments (all behind HOLD gates)
+
+### ⚡ Low-Level Infrastructure & Performance
+
+![Dependencies](https://img.shields.io/badge/Dependencies-Zero-2ea44f)
 ![Network](https://img.shields.io/badge/Network-Zero-2ea44f)
+![Deterministic](https://img.shields.io/badge/Deterministic-Byte--Identical-blue)
+
+- 🚀 Zero dependencies, zero network, zero install friction for the lab itself
+- 🎯 Deterministic end to end: run it twice, get byte-identical output
+
+### 🛠️ DevOps & Build Tools
+
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI-2088FF?logo=githubactions&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-yellow)
-![CI](https://img.shields.io/badge/CI-Pending%20Paste-lightgrey)
-![Docker Publish](https://img.shields.io/badge/Docker%20Publish-Pending%20Paste-lightgrey)
+![pytest](https://img.shields.io/badge/pytest-71%20passing-0A9EDC?logo=pytest&logoColor=white)
+![Git](https://img.shields.io/badge/Git-Version%20Control-F05032?logo=git&logoColor=white)
 
-> ℹ️ Workflow badges are static **'Pending Paste'** shields on purpose: the `ci.yml` and `docker-publish.yml` files are delivered in the local paste pack and are **not pasted yet**, so no live badge is claimed.
+- 🐳 Docker image (`python:3.12-slim`), target: `credkellar/superconductor-lab:latest`
+- ⚙️ GitHub Actions CI + Docker Publish workflows — delivered in the paste pack for `.github/workflows/`
 
-**📦 1. Language & Runtime**
-- 🐍 Python 3.12, pure standard library (`math`, `hashlib`, `json`, `sys`)
-- 🚫 Zero dependencies, zero network, deterministic (double-run byte-identical)
+### ☁️ Cloud Providers
 
-**⚛️ 2. Physics Core**
-- 🌡️ Critical surface: Bc2(T) = Bc2(0)·(1 − t²), Jc(T,B) derating, zero-resistance check
-- 🧲 Meissner screening + London penetration depth λ(T) = λ0/√(1 − (T/Tc)⁴)
-- 🌀 Type I vs II, Bc1 / Bc2 vortex bands, flux-pinning force density Fp = Jc × B
-- 🔬 BCS gap Δ = 1.764 kB·Tc with the standard Δ(T) interpolation
+Not used — this lab runs fully offline on your own machine or in a local Docker container. No cloud account, no API keys, no hosted services.
 
-**🤖 3. AI / ML**
-- 🧠 TinyML kNN operating-point classifier (from scratch, stdlib) on critical-surface ratios
-- 🗺️ Applications mapper: MRI / LN2 maglev bearing / fusion field / 20 K instrument
-- 🔮 Gemini Carbon 4 DECIDER seat (names-only, tighten-only) + Muse advisor (never overrides HOLD)
-
-**🎬 4. Media / Planning**
-- 🎥 Google Flow plan-only seat (rendered = False, live = 0)
-
-**🐳 5. Infrastructure**
-- 🐳 Docker (`python:3.12-slim`), GitHub Actions CI + Docker Publish (paste pack)
-- 🎯 Target image: `credkellar/superconductor-lab:latest`
-
-**🔒 6. Safety**
-- ⛔ 14 HOLD gates — live cryogenics, real hardware, room-temperature-superconductor claims, medical / grid claims, and more are permanently held
-
-## 🔬 What this does
+## What this does?
 
 1. 📋 **Materials table** — 8 superconductors with Tc, Bc2(0), type, and notes: Mercury (4.15 K, the 1911 original), Niobium (9.2 K), NbTi (9.8 K), Nb3Sn (18.3 K), MgB2 (39 K), YBCO (92 K), BSCCO (110 K), and H2S (203 K — **only at ~155 GPa**, labelled everywhere).
 2. 🧊 **Critical surface** — a point (T, B, J) is superconducting only inside the boundary: `Bc2(T) = Bc2(0)(1 − t²)` and `Jc(T,B) = Jc0(1 − t)^1.5(1 − B/Bc2(T))`; the state function names exactly which wall you crossed.
@@ -105,15 +117,17 @@ flowchart LR
     B --> C[tests import main.py directly]
 ```
 
-### `Dockerfile` — container
+### `Dockerfile` + CI — container & workflow flow
 
 ```mermaid
 flowchart LR
     A[python:3.12-slim] --> B[COPY project]
     B --> C[CMD python3 main.py demo]
+    D[push to main] --> E[GitHub Actions CI: pytest]
+    E --> F[Docker Publish: build + push credkellar/superconductor-lab:latest]
 ```
 
-## 🤩 Why is this cool?
+## Why is this cool?
 
 1. 🧊 The whole subject hangs on one picture — the critical surface — and this lab makes you *compute* with it.
 2. ⚡ Zero resistance is not a slogan here: cross any of the three walls and the resistance snaps back in the numbers.
@@ -126,7 +140,7 @@ flowchart LR
 9. 🏷️ A tiny from-scratch ML classifier learns the shape of the critical surface from ratios alone.
 10. 🎯 Deterministic end to end: run it twice, get byte-identical output — physics you can diff.
 
-## 🛠️ What problems this solves?
+## What problems this solves?
 
 1. ❌ **Problem:** "Superconductor" gets treated as a magic material property. ✅ **Solution:** The lab shows it is a *region* — leave the (T, B, J) region and it switches off, with the crossed wall named.
 2. ❌ **Problem:** Room-temperature superconductor hype cycles fool everyone yearly. ✅ **Solution:** H2S's 203 K carries its ~155 GPa caveat in the data itself, and room-temperature claims are a permanent HOLD gate.
@@ -139,9 +153,15 @@ flowchart LR
 9. ❌ **Problem:** Physics code usually needs numpy / scipy installs. ✅ **Solution:** Pure standard library — runs anywhere Python 3.12 runs, zero pip installs for the lab itself.
 10. ❌ **Problem:** Simulation tools quietly imply engineering readiness. ✅ **Solution:** Model constants are labelled as model values, operating points carry "not an engineering design", and 14 HOLD gates return exit code 2 for every live operation.
 
-## 📥 How to install step-by-step
+## How to install this?
 
-1. 📋 Clone or download this project folder.
+1. 📥 Clone the repo:
+
+```bash
+git clone https://github.com/kimanicollier44-cmyk/Superconductor-Lab.git
+cd Superconductor-Lab
+```
+
 2. 🐍 Make sure Python 3.12+ is installed: `python3 --version`
 3. ▶️ Run the full demo + checks (no arguments needed):
 
@@ -180,13 +200,53 @@ docker build -t credkellar/superconductor-lab:latest .
 docker run --rm credkellar/superconductor-lab:latest
 ```
 
-## 📋 Requirements
+## Requirements
 
-- 🐍 Python 3.12 or newer
-- 📦 Dependencies: **none** (standard library only)
+- 🐍 Python 3.12 or newer — standard library only
+- 📦 Dependencies: **none**
 - 🌐 Network: **none** — fully offline
-- 🧪 For tests only: `pytest`
+- 🧪 Optional, for tests only: `pytest`
 - 🐳 Optional: Docker
+
+## FULL project structure tree
+
+```text
+superconductor-lab/
+├── main.py                  # the whole lab: critical surface, Meissner, vortices, BCS, cryo, classifier, seats, HOLD gates
+├── conftest.py              # puts the project root on sys.path for tests
+├── tests/
+│   └── test_main.py         # 71 pytest tests: surface, Meissner, BCS, cryo, classifier, gates, determinism
+├── assets/
+│   └── cover.png            # README cover image (2736 x 912)
+├── Dockerfile               # python:3.12-slim, runs the demo
+├── .gitignore               # Python cache / venv ignores
+└── README.md                # this file
+```
+
+> 📦 Delivered separately as paste packs (not in this tree): `.github/workflows/ci.yml` + `docker-publish.yml`, and the Docker Hub pack (100-char description, 350-char About, overview, categories).
+
+## 🔒 HOLD gates — all 14, permanent
+
+| Gate | What stays held |
+|---|---|
+| `cryogenics_live_handling` | No live cryogen handling instructions for hardware builds |
+| `real_hardware_control` | No control of real magnets, coils, cryostats, or hardware |
+| `high_field_exposure_live` | No live high-field exposure of people or animals |
+| `room_temperature_superconductor_claim` | No room-temperature / ambient-pressure superconductor claim; none is established science |
+| `commercial_product_claim` | No claim this simulation is a commercial product or certified design |
+| `medical_mri_claim` | No medical, MRI design, or clinical claims |
+| `power_grid_claim` | No power-grid deployment or loss-free-grid claims |
+| `quench_experiment_live` | No live quench / magnet failure testing |
+| `fusion_reactor_claim` | No fusion reactor design or net-energy claims |
+| `maglev_operation_live` | No operation of a real maglev or levitation system |
+| `high_pressure_synthesis_live` | No live high-pressure synthesis (diamond-anvil) instructions |
+| `liquid_helium_procurement` | No procurement / handling planning for real cryogens |
+| `weapons_application_claim` | No weapons or military application claims |
+| `investment_advice_claim` | No investment advice about superconductor companies or materials |
+
+🧑‍⚖️ **Council seats:** Gemini Carbon 4 DECIDER (names-only, tighten-only, MAP→MODEL→STRESS→DECIDE, sha256 trace) · Muse advisor (`can_override_hold = False`) · Google Flow plan-only (rendered = False, live = 0).
+
+✅ **Verification:** pytest **71 passed** · built-in **CHECKS 54/54** · `python3 main.py` → VERDICT PROCEED (sandbox simulation only) · double-run byte-identical · hold-demo exits 2.
 
 ## 🧒 5th-grade English section
 
@@ -199,22 +259,6 @@ Some special stuff can carry electricity **forever** without wasting any — but
 - Keeping things at the coldest temperatures costs a **lot** of electricity for the fridge. Cold like outer space (4 K) costs about 24 times more fridge power than merely very cold (77 K). That is why scientists hunt for materials that work warmer. 💸
 - One material in the lab works at a warm-ish 203 K — but only when squeezed harder than almost anything on Earth. Squeezing is not the same as room temperature! 🤏
 - This project is a **pretend lab on a computer**. It does not cool anything real or build real magnets. It helps you learn how the coldest trick in physics really works. 💻
-
-## 🌳 Full file tree
-
-```text
-superconductor-lab/
-├── main.py                  # the whole lab: critical surface, Meissner, vortices, BCS, cryo, classifier, seats, HOLD gates
-├── conftest.py              # puts the project root on sys.path for tests
-├── tests/
-│   └── test_main.py         # 71 pytest tests: surface, Meissner, BCS, cryo, classifier, gates, determinism
-├── assets/
-│   └── cover.png            # README cover image (2736 x 912)
-├── Dockerfile               # python:3.12-slim, runs the demo
-└── README.md                # this file
-```
-
-> 📦 Delivered separately as paste packs (not in this tree): `.github/workflows/ci.yml` + `docker-publish.yml`, and the Docker Hub pack (100-char description, 350-char About, overview, categories).
 
 ---
 
