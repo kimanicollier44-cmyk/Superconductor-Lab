@@ -1,4 +1,4 @@
-![Superconductor-Lab cover](assets/cover.png)
+![Superconductor-Lab cover](Superconductor-Lab%20cover.png)
 
 # Superconductor-Lab ❄️⚡
 
